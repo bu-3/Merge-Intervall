@@ -19,7 +19,7 @@ namespace Merge_Intervall
             string path = GetFile();
             pathBox.Text = path;
             resultBox.Text = "Imported data:\n"
-                + string.Join("", GetData(path)).Replace('(', '[').Replace(')', ']')
+                + string.Join("", CalculateIntervall(GetData(path)).Replace('(', '[').Replace(')', ']'))
                 + "\n\n";
 
             // To update the UI after changes were done within the textboxes
@@ -94,7 +94,9 @@ namespace Merge_Intervall
             }
         }
 
-        private List<Tuple<int, int>> CalculateIntervall(List<Tuple<int, int>> data, bool recursion)
+        // Iterates through the data and compares start and end values of the interval
+        // Merges two intervals together (if necessary) and then returns a List<Tuple<int, int>> with results
+        private List<Tuple<int, int>> CalculateIntervall(List<Tuple<int, int>> data)
         {
             // Results are stored inside of this List
             List<Tuple<int, int>> result = new List<Tuple<int, int>>();
@@ -113,7 +115,8 @@ namespace Merge_Intervall
                      * If the second bool-statement is true then the end value of compareEntry (Item2) is within the interval
                      * 
                      * In this example you can see that both (b) and (c) are within the interval the only difference between (b) and (c)
-                     * is that the '6' is in different places.
+                     * is that the '6' is in a different place. The first bool-statement checks if the first value of compareEntry overlaps
+                     * the current interval and the second one does the same with the second value.
                      * 
                      * Example: (a) = [5,7] ; (b) = [4,6]; (c) = [6,9]
                      *
