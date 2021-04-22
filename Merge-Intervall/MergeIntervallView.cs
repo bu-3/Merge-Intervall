@@ -19,7 +19,7 @@ namespace Merge_Intervall
             string path = GetFile();
             pathBox.Text = path;
             resultBox.Text = "Imported data:\n"
-                + string.Join("", CalculateIntervall(GetData(path)).Replace('(', '[').Replace(')', ']'))
+                + string.Join("", CalculateIntervall(GetData(path))).Replace('(', '[').Replace(')', ']')
                 + "\n\n";
 
             // To update the UI after changes were done within the textboxes
@@ -100,12 +100,17 @@ namespace Merge_Intervall
         {
             // Results are stored inside of this List
             List<Tuple<int, int>> result = new List<Tuple<int, int>>();
+            // tempUsedOnes stores all intervals which already was merged, so it can skip these
+            List<Tuple<int, int>> tempUsedOnes = new List<Tuple<int, int>>();
 
             // Iterate through data and temporarily save the current min and max value out of the current entry
             foreach (var entry in data)
             {
                 int minInt = entry.Item1;
                 int maxInt = entry.Item2;
+
+                // Check if entry is already merged or not, if so skip
+                if (tempUsedOnes.Contains(entry)) continue;
 
                 // Iterate through the data again to compare values
                 foreach (var compareEntry in data)
@@ -129,6 +134,9 @@ namespace Merge_Intervall
                         // Change start and end of interval when value is smaller then min or greater then max
                         if (!(minInt <= compareEntry.Item1)) minInt = compareEntry.Item1;
                         if (!(maxInt >= compareEntry.Item2)) maxInt = compareEntry.Item2;
+                        
+                        // Add used entry into list
+                        tempUsedOnes.Add(compareEntry);
                     }
                 }
 
