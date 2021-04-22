@@ -17,10 +17,17 @@ namespace Merge_Intervall
         private void OpenNRun_Click(object sender, EventArgs e)
         {
             string path = GetFile();
-            pathBox.Text = path;
-            resultBox.Text = "Imported data:\n"
-                + string.Join("", CalculateIntervall(GetData(path))).Replace('(', '[').Replace(')', ']')
-                + "\n\n";
+
+            // Break if path is not set
+            if (!(path == "" || path.Length == 0))
+            {
+                // Nested: GetFile > GetData(path) > CalculateIntervall(data)
+                resultBox.Text = "Imported data:\n" + string.Join("", CalculateIntervall(GetData(path))) + "\n\n";
+            } else
+            {
+                resultBox.Text = "Invalid path";
+            }
+
 
             // To update the UI after changes were done within the textboxes
             Application.DoEvents();
@@ -34,7 +41,15 @@ namespace Merge_Intervall
             fileDialog.Filter = "Text|*txt";
             fileDialog.Multiselect = false;
             fileDialog.FilterIndex = 1;
-            fileDialog.ShowDialog();
+            try
+            {
+                fileDialog.ShowDialog();
+            }
+            catch
+            {
+                MessageBox.Show("Could not open file browser dialog.", "Error occured");
+                return null;
+            }
 
             return fileDialog.FileName;
         }
@@ -43,11 +58,11 @@ namespace Merge_Intervall
         // Returns a List with Tuples containing the start and end of the interval
         private List<Tuple<int, int>> GetData(string path)
         {
+            // data  = List of tuples<int, int> where data is stored, since there are always two digits within one intervall
+            List<Tuple<int, int>> data = new List<Tuple<int, int>>();
 
             // lines = each line in the text document
-            // data  = List of tuples<int, int> where data is stored, since there are always two digits within one intervall
             var lines = File.ReadAllLines(path);
-            List<Tuple<int, int>> data = new List<Tuple<int, int>>();
 
             try
             {
@@ -134,7 +149,7 @@ namespace Merge_Intervall
                         // Change start and end of interval when value is smaller then min or greater then max
                         if (!(minInt <= compareEntry.Item1)) minInt = compareEntry.Item1;
                         if (!(maxInt >= compareEntry.Item2)) maxInt = compareEntry.Item2;
-                        
+
                         // Add used entry into list
                         tempUsedOnes.Add(compareEntry);
                     }

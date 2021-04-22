@@ -40,7 +40,7 @@ namespace Merge_Intervall
             // 
             // pathBox
             // 
-            this.pathBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.pathBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pathBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.pathBox.Location = new System.Drawing.Point(12, 20);
@@ -51,8 +51,8 @@ namespace Merge_Intervall
             // 
             // resultBox
             // 
-            this.resultBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.resultBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.resultBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.resultBox.Location = new System.Drawing.Point(12, 46);
@@ -86,7 +86,6 @@ namespace Merge_Intervall
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(9, 4);
@@ -97,7 +96,7 @@ namespace Merge_Intervall
             // 
             // fileDialog
             // 
-            this.fileDialog.FileName = "openFileDialog1";
+            this.fileDialog.FileName = "Please select a File";
             // 
             // MergeIntervallView
             // 
