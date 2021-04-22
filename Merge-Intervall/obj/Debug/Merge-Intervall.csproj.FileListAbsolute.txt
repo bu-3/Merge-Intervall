@@ -1,0 +1,10 @@
+C:\Projects\Merge-Intervall\Merge-Intervall\bin\Debug\Merge-Intervall.exe.config
+C:\Projects\Merge-Intervall\Merge-Intervall\bin\Debug\Merge-Intervall.exe
+C:\Projects\Merge-Intervall\Merge-Intervall\bin\Debug\Merge-Intervall.pdb
+C:\Projects\Merge-Intervall\Merge-Intervall\obj\Debug\Merge-Intervall.csprojAssemblyReference.cache
+C:\Projects\Merge-Intervall\Merge-Intervall\obj\Debug\Merge_Intervall.MergeIntervallView.resources
+C:\Projects\Merge-Intervall\Merge-Intervall\obj\Debug\Merge_Intervall.Properties.Resources.resources
+C:\Projects\Merge-Intervall\Merge-Intervall\obj\Debug\Merge-Intervall.csproj.GenerateResource.cache
+C:\Projects\Merge-Intervall\Merge-Intervall\obj\Debug\Merge-Intervall.csproj.CoreCompileInputs.cache
+C:\Projects\Merge-Intervall\Merge-Intervall\obj\Debug\Merge-Intervall.exe
+C:\Projects\Merge-Intervall\Merge-Intervall\obj\Debug\Merge-Intervall.pdb
