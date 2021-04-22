@@ -18,8 +18,8 @@ namespace Merge_Intervall
         {
             string path = GetFile();
             pathBox.Text = path;
-            resultBox.Text = "Imported data:\n" 
-                + string.Join("", GetData(path)).Replace('(', '[').Replace(')', ']') 
+            resultBox.Text = "Imported data:\n"
+                + string.Join("", GetData(path)).Replace('(', '[').Replace(')', ']')
                 + "\n\n";
 
             // To update the UI after changes were done within the textboxes
@@ -92,6 +92,48 @@ namespace Merge_Intervall
                 MessageBox.Show("Error occured!\nPlease make sure you've selected the correct file", "Error");
                 return null;
             }
+        }
+
+        private List<Tuple<int, int>> CalculateIntervall(List<Tuple<int, int>> data, bool recursion)
+        {
+            // Results are stored inside of this List
+            List<Tuple<int, int>> result = new List<Tuple<int, int>>();
+
+            // Iterate through data and temporarily save the current min and max value out of the current entry
+            foreach (var entry in data)
+            {
+                int minInt = entry.Item1;
+                int maxInt = entry.Item2;
+
+                // Iterate through the data again to compare values
+                foreach (var compareEntry in data)
+                {
+                    /*
+                     * If the first bool-statement ((x) && (y)) is true then the start value of compareEntry (Item1) is within the interval
+                     * If the second bool-statement is true then the end value of compareEntry (Item2) is within the interval
+                     * 
+                     * In this example you can see that both (b) and (c) are within the interval the only difference between (b) and (c)
+                     * is that the '6' is in different places.
+                     * 
+                     * Example: (a) = [5,7] ; (b) = [4,6]; (c) = [6,9]
+                     *
+                     *           (a)|-------|
+                     *       (b)|------|
+                     *              (c)|-------|
+                     */
+                    if (((compareEntry.Item1 >= minInt) && (compareEntry.Item1 <= maxInt)) || ((compareEntry.Item2 >= minInt) && (compareEntry.Item2 <= maxInt)))
+                    {
+                        // Change start and end of interval when value is smaller then min or greater then max
+                        if (!(minInt <= compareEntry.Item1)) minInt = compareEntry.Item1;
+                        if (!(maxInt >= compareEntry.Item2)) maxInt = compareEntry.Item2;
+                    }
+                }
+
+                // Add merged minInt and maxInt after compare loop
+                result.Add(new Tuple<int, int>(minInt, maxInt));
+            }
+
+            return result;
         }
 
     }
