@@ -31,7 +31,7 @@ namespace Merge_Intervall
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MergeIntervallView));
             this.pathBox = new System.Windows.Forms.TextBox();
-            this.resultTextBox = new System.Windows.Forms.RichTextBox();
+            this.resultBox = new System.Windows.Forms.RichTextBox();
             this.OpenNRun = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,18 +49,18 @@ namespace Merge_Intervall
             this.pathBox.Size = new System.Drawing.Size(255, 20);
             this.pathBox.TabIndex = 0;
             // 
-            // resultTextBox
+            // resultBox
             // 
-            this.resultTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.resultBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.resultTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.resultTextBox.Location = new System.Drawing.Point(12, 46);
-            this.resultTextBox.Name = "resultTextBox";
-            this.resultTextBox.ReadOnly = true;
-            this.resultTextBox.Size = new System.Drawing.Size(358, 181);
-            this.resultTextBox.TabIndex = 1;
-            this.resultTextBox.Text = "";
+            this.resultBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.resultBox.Location = new System.Drawing.Point(12, 46);
+            this.resultBox.Name = "resultBox";
+            this.resultBox.ReadOnly = true;
+            this.resultBox.Size = new System.Drawing.Size(358, 181);
+            this.resultBox.TabIndex = 1;
+            this.resultBox.Text = "";
             // 
             // OpenNRun
             // 
@@ -107,7 +107,7 @@ namespace Merge_Intervall
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.OpenNRun);
-            this.Controls.Add(this.resultTextBox);
+            this.Controls.Add(this.resultBox);
             this.Controls.Add(this.pathBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MergeIntervallView";
@@ -120,7 +120,7 @@ namespace Merge_Intervall
         #endregion
 
         private System.Windows.Forms.TextBox pathBox;
-        private System.Windows.Forms.RichTextBox resultTextBox;
+        private System.Windows.Forms.RichTextBox resultBox;
         private System.Windows.Forms.Button OpenNRun;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
