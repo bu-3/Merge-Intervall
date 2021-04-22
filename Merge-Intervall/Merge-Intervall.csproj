@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\MergeIntervalTests.cs" />
     <EmbeddedResource Include="MergeIntervallView.resx">
       <DependentUpon>MergeIntervallView.cs</DependentUpon>
     </EmbeddedResource>

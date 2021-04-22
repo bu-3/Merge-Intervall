@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 /*
  * Created by Burak Sancak
- * 22.04.2021: Needed time: ~ 9h
+ * 22.04.2021: Working hours: ~ 9h
  */
 
 namespace Merge_Intervall
@@ -36,10 +36,17 @@ namespace Merge_Intervall
                 // Run in thread, because it would freeze the UI
                 List<Tuple<int, int>> result = await Task.Run(() => Merge(data, true));
 
-                // Display text
-                resultBox.Text = ("Result:\n" + string.Join("", result) 
-                                    + "\n\nImported data:\n" 
-                                    + string.Join("", data)).Replace('(', '[').Replace(')', ']');
+                if (result.Count != 0)
+                {
+                    // Display text
+                    resultBox.Text = ("Result:\n" + string.Join("", result)
+                                        + "\n\nImported data:\n"
+                                        + string.Join("", data)).Replace('(', '[').Replace(')', ']');
+                } else
+                {
+                    resultBox.Text = ("Error:\nNo data was found in file");
+                }
+               
             }
             else
             {
@@ -99,25 +106,35 @@ namespace Merge_Intervall
                     // Iterate through the parts and try to parse the content to Integer
                     foreach (var part in parts)
                     {
-                        // To save the status of the parse, if it was successful or not
-                        bool first = Int32.TryParse(part.Split(',')[0], out int minInt);
-                        bool second = Int32.TryParse(part.Split(',')[1], out int maxInt);
-
-                        // Check if both were successful: If not, skip this "part" and continue
-                        if (first && second)
+                        try
                         {
-                            // Change order if minInt is bigger then maxInt
-                            if (minInt > maxInt)
-                            {
-                                var temp = minInt;
-                                minInt = maxInt;
-                                maxInt = temp;
-                            }
+                            // To save the status of the parse, if it was successful or not
+                            bool first = Int32.TryParse(part.Split(',')[0], out int minInt);
+                            bool second = Int32.TryParse(part.Split(',')[1], out int maxInt);
 
-                            // Add both values into the data list as a Tuple
-                            data.Add(new Tuple<int, int>(minInt, maxInt));
+                            if (!first || !second) continue;
+
+                            // Check if both were successful: If not, skip this "part" and continue
+                            if (first && second)
+                            {
+                                // Change order if minInt is bigger then maxInt
+                                if (minInt > maxInt)
+                                {
+                                    var temp = minInt;
+                                    minInt = maxInt;
+                                    maxInt = temp;
+                                }
+
+                                // Add both values into the data list as a Tuple
+                                data.Add(new Tuple<int, int>(minInt, maxInt));
+                            }
+                            else
+                            {
+                                // It skippes that part instead of crashing: If wrong data (e.g. text or anything else) gets into the file
+                                continue;
+                            }
                         }
-                        else
+                        catch
                         {
                             continue;
                         }
@@ -141,6 +158,8 @@ namespace Merge_Intervall
             List<Tuple<int, int>> result = new List<Tuple<int, int>>();
             // tempUsedOnes stores all intervals which already was merged, so it can skip these
             List<Tuple<int, int>> tempUsedOnes = new List<Tuple<int, int>>();
+
+            if (data == null) return result;
 
             // Iterate through data and temporarily save the current min and max value out of the current entry
             foreach (var entry in data)
