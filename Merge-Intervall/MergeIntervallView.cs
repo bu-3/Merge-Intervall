@@ -22,8 +22,9 @@ namespace Merge_Intervall
             if (!(path == "" || path.Length == 0))
             {
                 // Nested: GetFile > GetData(path) > CalculateIntervall(data)
-                resultBox.Text = "Imported data:\n" + string.Join("", CalculateIntervall(GetData(path))) + "\n\n";
-            } else
+                resultBox.Text = "Imported data:\n" + string.Join("", Merge(GetData(path))) + "\n\n";
+            }
+            else
             {
                 resultBox.Text = "Invalid path";
             }
@@ -111,7 +112,7 @@ namespace Merge_Intervall
 
         // Iterates through the data and compares start and end values of the interval
         // Merges two intervals together (if necessary) and then returns a List<Tuple<int, int>> with results
-        private List<Tuple<int, int>> CalculateIntervall(List<Tuple<int, int>> data)
+        private List<Tuple<int, int>> Merge(List<Tuple<int, int>> data)
         {
             // Results are stored inside of this List
             List<Tuple<int, int>> result = new List<Tuple<int, int>>();
