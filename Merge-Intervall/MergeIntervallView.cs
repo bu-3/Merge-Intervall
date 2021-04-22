@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Merge_Intervall
 {
-    public partial class Form1 : Form
+    public partial class MergeIntervallView : Form
     {
-        public Form1()
+        public MergeIntervallView()
         {
             InitializeComponent();
         }
