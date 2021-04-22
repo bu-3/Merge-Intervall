@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Merge_Intervall
@@ -14,21 +15,31 @@ namespace Merge_Intervall
 
         // "Open and Run" executes a filedialog where the user can select one .txt file
         // The result is displayed in the two textboxes
-        private void OpenNRun_Click(object sender, EventArgs e)
+        private async void OpenNRun_Click(object sender, EventArgs e)
         {
             string path = GetFile();
 
             // Break if path is not set
             if (!(path == "" || path.Length == 0))
             {
-                // Nested: GetFile > GetData(path) > CalculateIntervall(data)
-                resultBox.Text = "Imported data:\n" + string.Join("", Merge(GetData(path))) + "\n\n";
+                progressBar.Visible = true;
+
+                pathBox.Text = path;
+
+                List<Tuple<int, int>> data = GetData(path);
+
+                // Run in thread, because it would freeze the UI
+                List<Tuple<int, int>> result = await Task.Run(() => Merge(data));
+
+                // Display text
+                resultBox.Text = ("Result:\n" + string.Join(" ", result) + "\n\nImported data:\n"+ string.Join(" ", data));
             }
             else
             {
                 resultBox.Text = "Invalid path";
             }
 
+            progressBar.Visible = false;
 
             // To update the UI after changes were done within the textboxes
             Application.DoEvents();
@@ -49,7 +60,7 @@ namespace Merge_Intervall
             catch
             {
                 MessageBox.Show("Could not open file browser dialog.", "Error occured");
-                return null;
+                return "";
             }
 
             return fileDialog.FileName;
@@ -162,6 +173,5 @@ namespace Merge_Intervall
 
             return result;
         }
-
     }
 }
