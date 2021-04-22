@@ -1,5 +1,6 @@
 # Merge-Intervall
 A little desktop tool to merge overlapping intervals from a list into new intervals. The desktop tool provides a graphical user-interface to make it more fancy and easier to use.
+
 ![grafik](https://user-images.githubusercontent.com/40634763/115754320-60408980-a39c-11eb-9a9d-0d124cca10b1.png)
 
 ## How does it work
