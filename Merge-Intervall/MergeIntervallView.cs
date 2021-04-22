@@ -4,6 +4,12 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+/*
+ * Created by Burak Sancak
+ * 22.04.2021: Needed time: ~ 9h
+ */
+
 namespace Merge_Intervall
 {
     public partial class MergeIntervallView : Form
@@ -23,7 +29,6 @@ namespace Merge_Intervall
             if (!(path == "" || path.Length == 0))
             {
                 progressBar.Visible = true;
-
                 pathBox.Text = path;
 
                 List<Tuple<int, int>> data = GetData(path);
@@ -32,11 +37,18 @@ namespace Merge_Intervall
                 List<Tuple<int, int>> result = await Task.Run(() => Merge(data, true));
 
                 // Display text
-                resultBox.Text = ("Result:\n" + string.Join(" ", result) + "\n\nImported data:\n"+ string.Join(" ", data));
+                resultBox.Text = ("Result:\n" + string.Join("", result) 
+                                    + "\n\nImported data:\n" 
+                                    + string.Join("", data)).Replace('(', '[').Replace(')', ']');
             }
             else
             {
-                resultBox.Text = "Invalid path";
+                resultBox.Text = "Invalid path\n"
+                    + "Please make sure your data is stored in the textfile as followed:\n"
+                    + "     [1,4][4,6][15,25][12,15][7,9][8,11] \n"
+                    + "     [51,612][4,5][75,82][2545,46213] \n"
+                    + "\nFor more Information visit github.com/bu-3";
+
             }
 
             progressBar.Visible = false;

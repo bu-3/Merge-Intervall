@@ -44,10 +44,11 @@ namespace Merge_Intervall
             this.pathBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pathBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.pathBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pathBox.Location = new System.Drawing.Point(12, 20);
             this.pathBox.Name = "pathBox";
             this.pathBox.ReadOnly = true;
-            this.pathBox.Size = new System.Drawing.Size(261, 20);
+            this.pathBox.Size = new System.Drawing.Size(261, 21);
             this.pathBox.TabIndex = 0;
             // 
             // resultBox
@@ -56,6 +57,7 @@ namespace Merge_Intervall
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.resultBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.resultBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resultBox.Location = new System.Drawing.Point(12, 46);
             this.resultBox.Name = "resultBox";
             this.resultBox.ReadOnly = true;
