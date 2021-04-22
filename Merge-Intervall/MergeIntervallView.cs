@@ -18,7 +18,9 @@ namespace Merge_Intervall
         {
             string path = GetFile();
             pathBox.Text = path;
-            resultBox.Text = "" + GetData(path); // TODO: Does not work rn
+            resultBox.Text = "Imported data:\n" 
+                + string.Join("", GetData(path)).Replace('(', '[').Replace(')', ']') 
+                + "\n\n";
 
             // To update the UI after changes were done within the textboxes
             Application.DoEvents();
@@ -91,5 +93,6 @@ namespace Merge_Intervall
                 return null;
             }
         }
+
     }
 }
