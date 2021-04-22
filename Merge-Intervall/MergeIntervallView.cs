@@ -29,7 +29,7 @@ namespace Merge_Intervall
                 List<Tuple<int, int>> data = GetData(path);
 
                 // Run in thread, because it would freeze the UI
-                List<Tuple<int, int>> result = await Task.Run(() => Merge(data));
+                List<Tuple<int, int>> result = await Task.Run(() => Merge(data, true));
 
                 // Display text
                 resultBox.Text = ("Result:\n" + string.Join(" ", result) + "\n\nImported data:\n"+ string.Join(" ", data));
@@ -123,7 +123,7 @@ namespace Merge_Intervall
 
         // Iterates through the data and compares start and end values of the interval
         // Merges two intervals together (if necessary) and then returns a List<Tuple<int, int>> with results
-        private List<Tuple<int, int>> Merge(List<Tuple<int, int>> data)
+        private List<Tuple<int, int>> Merge(List<Tuple<int, int>> data, bool recursion)
         {
             // Results are stored inside of this List
             List<Tuple<int, int>> result = new List<Tuple<int, int>>();
@@ -169,6 +169,13 @@ namespace Merge_Intervall
 
                 // Add merged minInt and maxInt after compare loop
                 result.Add(new Tuple<int, int>(minInt, maxInt));
+            }
+
+            // Recursion is needed to clean up double entries
+            // This takes little to no time due to smaller result outputs
+            if (recursion)
+            {
+                return Merge(result, false);
             }
 
             return result;
