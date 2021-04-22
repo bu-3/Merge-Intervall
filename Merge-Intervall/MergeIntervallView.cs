@@ -16,5 +16,21 @@ namespace Merge_Intervall
         {
             InitializeComponent();
         }
+
+        private void OpenNRun_Click(object sender, EventArgs e)
+        {
+            pathBox.Text = GetFile();
+            Application.DoEvents();
+        }
+
+        private string GetFile()
+        {
+            fileDialog.Filter = "Text|*txt";
+            fileDialog.FilterIndex = 1;
+
+            fileDialog.ShowDialog();
+
+            return fileDialog.FileName;
+        }
     }
 }

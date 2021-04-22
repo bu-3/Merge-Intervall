@@ -30,36 +30,37 @@ namespace Merge_Intervall
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MergeIntervallView));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.pathBox = new System.Windows.Forms.TextBox();
+            this.resultTextBox = new System.Windows.Forms.RichTextBox();
             this.OpenNRun = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
-            // textBox1
+            // pathBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pathBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBox1.Location = new System.Drawing.Point(12, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(255, 20);
-            this.textBox1.TabIndex = 0;
+            this.pathBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.pathBox.Location = new System.Drawing.Point(12, 20);
+            this.pathBox.Name = "pathBox";
+            this.pathBox.ReadOnly = true;
+            this.pathBox.Size = new System.Drawing.Size(255, 20);
+            this.pathBox.TabIndex = 0;
             // 
-            // richTextBox1
+            // resultTextBox
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.resultTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.richTextBox1.Location = new System.Drawing.Point(12, 46);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(358, 181);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.resultTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.resultTextBox.Location = new System.Drawing.Point(12, 46);
+            this.resultTextBox.Name = "resultTextBox";
+            this.resultTextBox.ReadOnly = true;
+            this.resultTextBox.Size = new System.Drawing.Size(358, 181);
+            this.resultTextBox.TabIndex = 1;
+            this.resultTextBox.Text = "";
             // 
             // OpenNRun
             // 
@@ -70,6 +71,7 @@ namespace Merge_Intervall
             this.OpenNRun.TabIndex = 2;
             this.OpenNRun.Text = "Open and &Run";
             this.OpenNRun.UseVisualStyleBackColor = true;
+            this.OpenNRun.Click += new System.EventHandler(this.OpenNRun_Click);
             // 
             // label1
             // 
@@ -86,12 +88,16 @@ namespace Merge_Intervall
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label2.Location = new System.Drawing.Point(12, 4);
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(9, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Path:";
+            // 
+            // fileDialog
+            // 
+            this.fileDialog.FileName = "openFileDialog1";
             // 
             // MergeIntervallView
             // 
@@ -101,8 +107,8 @@ namespace Merge_Intervall
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.OpenNRun);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.resultTextBox);
+            this.Controls.Add(this.pathBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MergeIntervallView";
             this.Text = "Merge Intervall";
@@ -113,11 +119,12 @@ namespace Merge_Intervall
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TextBox pathBox;
+        private System.Windows.Forms.RichTextBox resultTextBox;
         private System.Windows.Forms.Button OpenNRun;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.OpenFileDialog fileDialog;
     }
 }
 
